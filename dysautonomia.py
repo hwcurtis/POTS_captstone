@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 
 data = {
@@ -31,4 +32,9 @@ df = pd.DataFrame(data)
 print(df)
 
 # Save the DataFrame to a CSV file
-df.to_csv("pots_dataset.csv", index=False)
+try:
+    base_dir = os.path.dirname(__file__)
+except NameError:
+    base_dir = os.getcwd()
+csv_path = os.path.join(base_dir, "pots_dataset.csv")
+df.to_csv(csv_path, index=False)
